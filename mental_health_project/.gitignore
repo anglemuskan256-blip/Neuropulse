@@ -15,6 +15,19 @@ env/
 *.csv
 *.xlsx
 
+# ============================================================
+# CRITICAL: Large ML model files - TOO BIG for Vercel (81MB!)
+# These must NOT be committed to Git / deployed to Vercel.
+# Host them on Google Drive / Hugging Face / S3 instead.
+# ============================================================
+model/*.pkl
+model/mental_health_model.pkl
+model/knn_imputer.pkl
+model/smote_transformer.pkl
+model/mental_health_model_encoder.pkl
+model/mental_health_model_features.pkl
+model/mental_health_model_scaler.pkl
+
 # Local-only scripts & docs
 RUN_WEBSITE.bat
 STARTUP_GUIDE.txt
@@ -41,3 +54,5 @@ Thumbs.db
 
 # Logs
 *.log
+
+Neuropulse_2/

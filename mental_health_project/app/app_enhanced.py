@@ -27,18 +27,28 @@ app = Flask(__name__,
             template_folder=os.path.join(app_dir, 'templates'),
             static_folder=os.path.join(app_dir, 'static'))
 
-# Load Model Components
+# Load Model Components (graceful fallback if pkl files are not present)
 print("\n[Loading Model Components...]")
+model = None
+scaler = None
+feature_names = None
+MODEL_READY = False
 try:
-    model = joblib.load(os.path.join(project_dir, 'model/mental_health_model.pkl'))
-    scaler = joblib.load(os.path.join(project_dir, 'model/mental_health_model_scaler.pkl'))
-    feature_names = joblib.load(os.path.join(project_dir, 'model/mental_health_model_features.pkl'))
+    model = joblib.load(os.path.join(project_dir, 'model', 'mental_health_model.pkl'))
+    scaler = joblib.load(os.path.join(project_dir, 'model', 'mental_health_model_scaler.pkl'))
+    feature_names = joblib.load(os.path.join(project_dir, 'model', 'mental_health_model_features.pkl'))
     print(f"✓ Model loaded (Voting Ensemble, 90.28% accuracy)")
     print(f"✓ Features: {len(feature_names)} total")
     MODEL_READY = True
+except FileNotFoundError:
+    # Model files not present (expected on Vercel - rule-based engine is used instead)
+    print("ℹ Model .pkl files not found - using rule-based prediction engine (Vercel deployment mode)")
+    feature_names = ['Heart_Rate', 'HRV', 'Respiration', 'Skin_Temp',
+                     'BP_Systolic', 'BP_Diastolic', 'Cognitive_State', 'Emotional_State']
 except Exception as e:
-    print(f"✗ Error loading model: {e}")
-    MODEL_READY = False
+    print(f"✗ Unexpected error loading model: {e}")
+    feature_names = ['Heart_Rate', 'HRV', 'Respiration', 'Skin_Temp',
+                     'BP_Systolic', 'BP_Diastolic', 'Cognitive_State', 'Emotional_State']
 
 # Initialize Recommendation Engine
 recommendation_engine = RecommendationEngine()

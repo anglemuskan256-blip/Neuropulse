@@ -1,24 +1,23 @@
 {
-  "buildCommand": "pip install --upgrade -r requirements.txt",
-  "outputDirectory": "public",
-  "framework": "flask",
-  "python": {
-    "version": "3.11"
-  },
-  "env": {
-    "FLASK_ENV": "production",
-    "PYTHONUNBUFFERED": "1",
-    "FLASK_DEBUG": "0"
-  },
-  "functions": {
-    "api/index.py": {
-      "runtime": "python3.11"
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(.*)",
       "dest": "api/index.py"
     }
-  ]
+  ],
+  "env": {
+    "FLASK_ENV": "production",
+    "PYTHONUNBUFFERED": "1",
+    "FLASK_DEBUG": "0"
+  }
 }
