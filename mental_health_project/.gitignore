@@ -1,0 +1,43 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+
+# Raw data files (not needed for deployment)
+*.csv
+*.xlsx
+
+# Local-only scripts & docs
+RUN_WEBSITE.bat
+STARTUP_GUIDE.txt
+ACCURACY_JOURNEY.md
+HIGH_ACCURACY_SUMMARY.md
+debug_brain_snippet.py
+generate_cleaned_dataset.py
+generate_confusion_matrix.py
+generate_roc_auc.py
+
+# Test files (optional - remove these lines if you want tests on GitHub)
+test_about_page.py
+test_api.py
+test_confusion_matrix.py
+test_logic.py
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
