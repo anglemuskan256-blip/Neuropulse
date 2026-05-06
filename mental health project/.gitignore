@@ -46,6 +46,9 @@ test_api.py
 test_confusion_matrix.py
 test_logic.py
 
+# requirements.txt lives at repo root (space in folder name breaks Streamlit Cloud)
+requirements.txt
+
 # Flask / Vercel files (not needed for Streamlit)
 app/
 api/
