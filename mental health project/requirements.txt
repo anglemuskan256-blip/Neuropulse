@@ -1,8 +1,3 @@
-﻿pandas
-numpy
-scikit-learn
-joblib
-plotly
-python-dotenv
-flask
-Werkzeug
+streamlit>=1.30.0
+pandas>=2.0.0
+numpy>=1.24.0

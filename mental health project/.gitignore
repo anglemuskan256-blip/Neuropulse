@@ -16,9 +16,8 @@ env/
 *.xlsx
 
 # ============================================================
-# CRITICAL: Large ML model files - TOO BIG for Vercel (81MB!)
-# These must NOT be committed to Git / deployed to Vercel.
-# Host them on Google Drive / Hugging Face / S3 instead.
+# Large ML model files - NOT used by Streamlit deployment
+# (prediction_engine.py uses rule-based logic, not .pkl models)
 # ============================================================
 model/*.pkl
 model/mental_health_model.pkl
@@ -30,6 +29,8 @@ model/mental_health_model_scaler.pkl
 
 # Local-only scripts & docs
 RUN_WEBSITE.bat
+START.bat
+start.ps1
 STARTUP_GUIDE.txt
 ACCURACY_JOURNEY.md
 HIGH_ACCURACY_SUMMARY.md
@@ -37,12 +38,19 @@ debug_brain_snippet.py
 generate_cleaned_dataset.py
 generate_confusion_matrix.py
 generate_roc_auc.py
+run_website.py
 
-# Test files (optional - remove these lines if you want tests on GitHub)
+# Test files
 test_about_page.py
 test_api.py
 test_confusion_matrix.py
 test_logic.py
+
+# Flask / Vercel files (not needed for Streamlit)
+app/
+api/
+vercel.json
+.vercelignore
 
 # OS files
 .DS_Store
